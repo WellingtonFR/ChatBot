@@ -1,0 +1,49 @@
+# Ambiente virtual
+venv/
+.env
+
+# Arquivos do Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+
+# Configurações do Django
+db.sqlite3
+db.sqlite3-journal
+*.log
+*.pot
+*.pyc
+*.swp
+
+# Diretório de migrações (exceto `__init__.py`)
+*/migrations/*  
+!*/migrations/__init__.py
+
+# Arquivos do Editor
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Dependências
+node_modules/
+
+# Arquivos de mídia e estáticos gerados
+staticfiles/
+media/
+
+# Arquivos do Pytest, Coverage e Debug
+.coverage
+htmlcov/
+*.cover
+nosetests.xml
+tests.xml
+pytest_cache/
+
+#Virtual Environment
+venv/

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  ChatBot
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="chat-container">
+    <h2>ChatBot</h2>
+    <div id="chatbox"></div>
+    {% csrf_token %}
+    <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+
+  <script>
+    function getCSRFToken() {
+      let cookies = document.cookie.split(';')
+    
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim()
+    
+        if (cookie.startsWith('csrftoken=')) {
+          return cookie.substring('csrftoken='.length, cookie.length)
+        }
+      }
+      return ''
+    }
+    
+    function sendMessage() {
+      let input = document.getElementById('messageInput')
+      let message = input.value
+      input.value = ''
+    
+      let chatbox = document.getElementById('chatbox')
+      chatbox.innerHTML += '<p><strong>Você:</strong> ' + message + '</p>'
+    
+      fetch('', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': getCSRFToken()
+        },
+        body: 'message=' + encodeURIComponent(message)
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            chatbox.innerHTML += `<p style="color:red;"><strong>Erro:</strong> ${data.error}</p>`
+          } else {
+            chatbox.innerHTML += `<p style="margin:10px 0px"><strong>ChatGPT:</strong> ${data.response} </p>`
+          }
+        })
+        .catch((error) => {
+          console.error('Erro ao processar a resposta:', error)
+          chatbox.innerHTML += `<p style="color:red;"><strong>Erro inesperado:</strong> ${error.message}</p>`
+        })
+    }
+  </script>
+{% endblock %}
