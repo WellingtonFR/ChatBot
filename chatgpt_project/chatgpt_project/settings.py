@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import dj_database_url
 
 
 from dotenv import load_dotenv
@@ -19,7 +18,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['201.54.8.160', 'localhost', '127.0.0.1']
+
 
 INSTALLED_APPS = [
     'allauth',

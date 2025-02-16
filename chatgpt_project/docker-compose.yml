@@ -4,7 +4,7 @@ services:
   web:
     build: .
     container_name: chatbot_web
-    restart: always
+    restart: "unless-stopped"
     environment:
       DEBUG: "False"
       ALLOWED_HOSTS: "*"
