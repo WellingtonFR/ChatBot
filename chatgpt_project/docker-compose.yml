@@ -1,28 +1,17 @@
-services:
-  db:
-    image: postgres:15
-    container_name: db_chatbot
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+version: "3.8"
 
+services:
   web:
     build: .
     container_name: chatbot_web
     restart: always
-    depends_on:
-      - db
-    env_file:
-      - .env
+    environment:
+      DEBUG: "False"
+      ALLOWED_HOSTS: "*"
+      GOOGLE_OAUTH2_CLIENT_ID: "SEU_CLIENT_ID"
+      GOOGLE_OAUTH2_CLIENT_SECRET: "SEU_CLIENT_SECRET"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "chatgpt_project.wsgi:application"]
-
-volumes:
-  postgres_data:
