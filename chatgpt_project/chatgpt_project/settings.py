@@ -18,7 +18,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 
 DEBUG = True
-ALLOWED_HOSTS = ['201.54.8.160', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['201.54.8.160', 'localhost', '127.0.0.1', '9555-2801-80-3ea0-dbde-00-85.ngrok-free.app']
 
 
 INSTALLED_APPS = [
