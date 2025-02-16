@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block content %}
+  <div class="login-container">
+    <h2>Entrar com o Google</h2>
+
+    <p>Clique no botão abaixo para continuar com sua conta do Google.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <a href="{% provider_login_url 'google' %}" class="google-login-btn">
+        <button type="submit">
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" width="20" />
+          Continuar com Google
+        </button>
+      </a>
+
+      <p>
+        <a href="{% url 'account_login' %}" class="back-link">Voltar para login padrão</a>
+      </p>
+    </form>
+  </div>
+
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .login-container {
+      text-align: center;
+      margin: 50px auto;
+      width: 320px;
+      padding: 25px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .google-login-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #4285f4;
+      color: white;
+      padding: 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 15px;
+      transition: background-color 0.3s;
+    }
+    
+    .google-login-btn:hover {
+      background-color: #357ae8;
+    }
+    
+    .google-login-btn img {
+      margin-right: 10px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #bb86fc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .back-link:hover {
+      color: #9c65e8;
+    }
+  </style>
+{% endblock %}

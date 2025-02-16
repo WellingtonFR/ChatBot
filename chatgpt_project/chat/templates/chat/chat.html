@@ -14,8 +14,10 @@
     <h2>ChatBot</h2>
     <div id="chatbox"></div>
     {% csrf_token %}
-    <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
-    <button onclick="sendMessage()">Enviar</button>
+    <form onsubmit="sendMessage(event)">
+      <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
+      <button onclick="sendMessage()">Enviar</button>
+    </form>
   </div>
 
   <script>
@@ -32,19 +34,22 @@
       return ''
     }
     
-    function sendMessage() {
+    function sendMessage(event) {
+      event.preventDefault()
+    
       let input = document.getElementById('messageInput')
-      let message = input.value
+      let message = input.value.trim()
+      if (!message) return
       input.value = ''
     
       let chatbox = document.getElementById('chatbox')
-      chatbox.innerHTML += '<p><strong>Você:</strong> ' + message + '</p>'
+      chatbox.innerHTML += `<p><strong>Você:</strong> ${message}</p>`
     
       fetch('', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'X-CSRFToken': getCSRFToken()
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
         },
         body: 'message=' + encodeURIComponent(message)
       })
@@ -53,7 +58,7 @@
           if (data.error) {
             chatbox.innerHTML += `<p style="color:red;"><strong>Erro:</strong> ${data.error}</p>`
           } else {
-            chatbox.innerHTML += `<p style="margin:10px 0px"><strong>ChatGPT:</strong> ${data.response} </p>`
+            chatbox.innerHTML += `<p><strong>ChatGPT:</strong> ${data.response}</p>`
           }
         })
         .catch((error) => {
