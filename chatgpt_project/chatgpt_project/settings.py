@@ -7,18 +7,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-STATIC_URL = "/static/"
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
-SECRET_KEY = os.getenv('SECRET_KEY', '!**django-insecure**!')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 
 DEBUG = True
-ALLOWED_HOSTS = ['201.54.8.160', 'localhost', '127.0.0.1']
+
+ALLOWED_HOSTS = [
+    h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',')
+    if h.strip()
+]
 
 
 INSTALLED_APPS = [
@@ -128,6 +123,16 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+SECRET_KEY = os.getenv('SECRET_KEY', '!**django-insecure**!')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
