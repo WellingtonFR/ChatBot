@@ -9,10 +9,9 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Em resumo, você verá os outputs do Python em tempo real.
 ENV PYTHONUNBUFFERED 1
 
-COPY . /chatgpt_project
+WORKDIR /chatbot
+COPY . .
 COPY scripts /scripts
-
-WORKDIR /chatgpt_project
 
 EXPOSE 8000
 

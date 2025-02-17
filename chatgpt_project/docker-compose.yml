@@ -1,12 +1,10 @@
 services:
   chatbot_web:
-    container_name: chatbot_web
+    container_name: chatbot
     restart: "unless-stopped"
     build:
       context: .
     ports:
       - 8000:8000
-    volumes:
-      - ./chatgpt_project:/chatgpt_project
     env_file:
       - .env
