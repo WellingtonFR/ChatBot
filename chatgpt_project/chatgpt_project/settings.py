@@ -18,7 +18,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 
 DEBUG = True
-ALLOWED_HOSTS = ['201.54.8.160', 'localhost', '127.0.0.1', '9555-2801-80-3ea0-dbde-00-85.ngrok-free.app']
+ALLOWED_HOSTS = ['201.54.8.160', 'localhost', '127.0.0.1',
+                 '9555-2801-80-3ea0-dbde-00-85.ngrok-free.app']
 
 
 INSTALLED_APPS = [
@@ -96,31 +97,31 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
 
-SITE_ID = 1
+# SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'  
-LOGOUT_REDIRECT_URL = '/'  
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
 
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_LOGIN_METHODS= {"username"}
-ACCOUNT_EMAIL_REQUIRED = False
+# ACCOUNT_EMAIL_VERIFICATION = "none"
+# ACCOUNT_LOGIN_METHODS= {"username"}
+# ACCOUNT_EMAIL_REQUIRED = False
 
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "APP": {
-            "client_id": os.getenv("GOOGLE_OAUTH2_CLIENT_ID", ""),
-            "secret": os.getenv("GOOGLE_OAUTH2_CLIENT_SECRET", ""),
-        },
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        },
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     "google": {
+#         "APP": {
+#             "client_id": os.getenv("GOOGLE_OAUTH2_CLIENT_ID", ""),
+#             "secret": os.getenv("GOOGLE_OAUTH2_CLIENT_SECRET", ""),
+#         },
+#         "AUTH_PARAMS": {
+#             "access_type": "online",
+#         },
+#     }
+# }
 
 
 LANGUAGE_CODE = 'pt-br'

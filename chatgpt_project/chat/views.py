@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
-@login_required
+
+# @login_required
 def chat_view(request):
     if request.method == "POST":
         try:
@@ -32,7 +33,8 @@ def chat_view(request):
 
             chat_response = response_json["choices"][0]["message"]["content"]
 
-            chat_history.append({"role": "assistant", "content": chat_response})
+            chat_history.append(
+                {"role": "assistant", "content": chat_response})
 
             request.session["chat_history"] = chat_history[-10:]
 
