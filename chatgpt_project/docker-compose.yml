@@ -1,17 +1,12 @@
-version: "3.8"
-
 services:
-  web:
-    build: .
+  chatbot_web:
     container_name: chatbot_web
     restart: "unless-stopped"
-    environment:
-      DEBUG: "False"
-      ALLOWED_HOSTS: "*"
-      GOOGLE_OAUTH2_CLIENT_ID: "SEU_CLIENT_ID"
-      GOOGLE_OAUTH2_CLIENT_SECRET: "SEU_CLIENT_SECRET"
-    volumes:
-      - .:/app
+    build:
+      context: .
     ports:
-      - "8000:8000"
-    command: ["gunicorn", "--bind", "0.0.0.0:8000", "chatgpt_project.wsgi:application"]
+      - 8000:8000
+    volumes:
+      - ./chatgpt_project:/chatgpt_project
+    env_file:
+      - .env
