@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
 
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,6 +10,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = ["201.54.8.160", "localhost", "127.0.0.1"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://201.54.8.160:8000"
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://201.54.8.160:8000"
+]
 
 INSTALLED_APPS = [
     'allauth',

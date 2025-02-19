@@ -3,12 +3,12 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 import json
-from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 
-# @login_required
+@csrf_exempt
 def chat_view(request):
     if request.method == "POST":
         try:
